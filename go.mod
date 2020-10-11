@@ -1,4 +1,4 @@
-module github.com/go-programming-tour-book/tour
+module github.com/kevinchfe/tour
 
 go 1.15
 

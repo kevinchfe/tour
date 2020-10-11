@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/go-programming-tour-book/tour/cmd"
+	"github.com/kevinchfe/tour/cmd"
 )
 
 // var name string
