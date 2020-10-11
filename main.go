@@ -3,10 +3,10 @@ package main
 import (
 	"log"
 
-	"github.com/spf13/cobra/cobra/cmd"
+	"github.com/go-programming-tour-book/tour/cmd"
 )
 
-var name string
+// var name string
 
 func main() {
 
@@ -14,7 +14,6 @@ func main() {
 	if err != nil {
 		log.Fatalf("cmd.Execute err: %v", err)
 	}
-
 	// flag.Parse()
 
 	// // fmt.Println(os.Args[:])
