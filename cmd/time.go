@@ -2,6 +2,9 @@ package cmd
 
 import (
 	"log"
+	"strconv"
+	"strings"
+	"time"
 
 	"github.com/kevinchfe/tour/internal/timer"
 	"github.com/spf13/cobra"
@@ -27,6 +30,38 @@ var nowTimeCmd = &cobra.Command{
 	},
 }
 
+var calculateTimeCmd = &cobra.Command{
+	Use:   "calc",
+	Short: "计算所需时间",
+	Long:  "计算所需时间",
+	Run: func(cmd *cobra.Command, args []string) {
+		var currentTimer time.Time
+		var layout = "2006-01-02 15:04:05"
+		if calculateTime == "" {
+			currentTimer = timer.GetNowTime()
+		} else {
+			var err error
+			if !strings.Contains(calculateTime, " ") {
+				layout = "2006-01-02"
+			}
+			currentTimer, err = time.Parse(layout, calculateTime)
+			if err != nil {
+				t, _ := strconv.Atoi(calculateTime)
+				currentTimer = time.Unix(int64(t), 0)
+			}
+		}
+		calculateTime, err := timer.GetCalculateTime(currentTimer, duration)
+		if err != nil {
+			log.Fatalf("timer.GetCalculateTime err: %v", err)
+		}
+		log.Printf("输出结果: %s, %d", calculateTime.Format(layout), calculateTime.Unix())
+	},
+}
+
 func init() {
 	timeCmd.AddCommand(nowTimeCmd)
+	timeCmd.AddCommand(calculateTimeCmd)
+
+	calculateTimeCmd.Flags().StringVarP(&calculateTime, "calculate", "c", "", `需要计算时间，有效单位时间戳或已格式化后的时间`)
+	calculateTimeCmd.Flags().StringVarP(&duration, "duration", "d", "", `持续时间，有效单位时间为"ns","us", "ms", "s", "m", "h"`)
 }
