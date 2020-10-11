@@ -15,9 +15,11 @@ const (
 	ModeCamelCaseToUnderscore                 // 驼峰转换为下划线
 )
 
+var str string
+var mode int8
 
 var desc = strings.Join([] string{
-	"该子命令支持各种单词格式转换，模式如下："，
+	"该子命令支持各种单词格式转换，模式如下：",
 	"1: 全部单词转为大写",
 	"2: 全部单词转为小写",
 	"3: 下划线单词转为大驼峰单词",
@@ -46,9 +48,10 @@ var wordCmd = &cobra.Command{
 			log.Fatalf("暂不支持改转换模式，请执行help word查看帮助文档")
 		}
 		log.Printf("输出结果： %s", content)
-	}
+	},
+}
 
-	func init()  {
-		
-	}
+func init()  {
+	wordCmd.Flags().StringVarP(&str, "str", "s", "", "请输入单词内容")
+	wordCmd.Flags().Int8VarP(&mode, "mode", "m", 0, "请输入单词转换的模式")
 }
