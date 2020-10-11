@@ -5,8 +5,12 @@ import (
 	"log"
 )
 
+var name string
+
 func main() {
-	var name string
+	flag.Parse()
+
+	// fmt.Println(os.Args[:])
 
 	goCmd := flag.NewFlagSet("go", flag.ExitOnError)
 	goCmd.StringVar(&name, "name", "go语言", "帮助信息")
