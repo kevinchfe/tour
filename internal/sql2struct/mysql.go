@@ -61,7 +61,7 @@ func NewDBModel(info *DBInfo) *DBModel {
 	return &DBModel{DBInfo: info}
 }
 
-func (m *DBModel) connect() error {
+func (m *DBModel) Connect() error {
 	var err error
 	dsn := fmt.Sprintf("%s:%s@tcp(%s:%s)/information_schema?charset=%s&parseTime=True&loc=Local",
 		m.DBInfo.UserName, m.DBInfo.Password, m.DBInfo.Host, m.DBInfo.Port, m.DBInfo.Charset)
