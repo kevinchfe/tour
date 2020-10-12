@@ -59,9 +59,9 @@ func init() {
 	sql2structCmd.Flags().StringVarP(&username, "username", "", "", "请输入数据库账号")
 	sql2structCmd.Flags().StringVarP(&password, "password", "", "", "请输入数据库密码")
 	sql2structCmd.Flags().StringVarP(&host, "host", "", "127.0.0.1", "请输入数据库HOST")
-	sql2structCmd.Flags().StringVarP(&port, "port", "", "3306", "请输入数据库端口")
+	sql2structCmd.Flags().StringVarP(&port, "port", "", "3307", "请输入数据库端口")
 	sql2structCmd.Flags().StringVarP(&charset, "charset", "", "utf8mb4", "请输入数据库编码")
 	sql2structCmd.Flags().StringVarP(&dbType, "dbType", "", "mysql", "请输入数据库类型")
-	sql2structCmd.Flags().StringVarP(&dbName, "dbName", "", "mysql", "请输入数据库名称")
-	sql2structCmd.Flags().StringVarP(&tableName, "tableName", "", "mysql", "请输入表名称")
+	sql2structCmd.Flags().StringVarP(&dbName, "db", "", "", "请输入数据库名称")
+	sql2structCmd.Flags().StringVarP(&tableName, "table", "", "", "请输入表名称")
 }
